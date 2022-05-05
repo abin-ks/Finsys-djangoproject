@@ -25556,6 +25556,7 @@ def deletestyle(request, customizeid):
 @login_required(login_url='regcomp') 
 def cash_flow_analyzer(request):
     cmp1 = company.objects.get(id=request.session['uid'])
+    context = {'cmp1': cmp1}
     balance = expences.objects.order_by('paymmethod')
     ball = expences.objects.order_by('category1')
     tody = datetime.now()
@@ -25566,29 +25567,294 @@ def cash_flow_analyzer(request):
     bank = 0.0
     bus = 0.0
     cha = 0.0
+    computer = 0.0
+    continueing = 0.0
+    Depreciation = 0.0
+    Dues = 0.0
+    context['tod'] = tod
     for bal in balance:
         
         if (bal.paymmethod=='Cash'):
             data_1.append(bal.totamt)
             exp+=float(bal.totamt)
-            
+    context['exp'] = exp
     for ban in ball:
         if (ban.category1=='Advertising/Promotional'):
             data_1.append(ban.totamt)
             bat+=float(ban.totamt)
+    context['bat'] = bat       
     for bb in ball:
             if (bb.category1=='Bank Charges'):
                 data_1.append(bb.totamt)
                 bank+=float(bb.totamt)
+    context['bank'] = bank
     for vvv in ball:
-            if (vvv.category1=='Business Licenses and Permits'):
+            if (vvv.category1=='Business Licenses and Permits'):        
                 data_1.append(vvv.totamt)
                 bus+=float(vvv.totamt)
+    context['bus'] = bus
     for n in ball:
             if (n.category1=='Charitable Contributions'):
                 data_1.append(n.totamt)
                 cha+=float(n.totamt)
-    return render(request, 'app1/cash_flow_analyzer.html', {'exp':exp, 'tod':tod,'bat':bat,'bank':bank,'bus':bus,'cha':cha})
+    context['cha'] = cha  
+    for comp in ball:
+            if (comp.category1=='Computer and Internet Expense'):
+                data_1.append(comp.totamt)
+                computer+=float(comp.totamt)
+    context['computer'] = computer  
+    for cont in ball:
+            if (cont.category1=='Continuing Education'):
+                data_1.append(cont.totamt)
+                continueing+=float(cont.totamt)
+    context['continueing'] = continueing
+    for depre in ball:
+            if (depre.category1=='Depreciation Expense'):
+                data_1.append(depre.totamt)
+                Depreciation+=float(depre.totamt)
+    context['Depreciation'] = Depreciation
+    for dues in ball:
+            if (dues.category1=='Dues and Subscriptions'):
+                data_1.append(dues.totamt)
+                Dues+=float(dues.totamt)
+    context['Dues'] = Dues
+    
+    Housekeeping = 0.0
+    for Housekeep in ball:
+            if (Housekeep.category1=='Housekeeping Charges'):
+                data_1.append(Housekeep.totamt)
+                Housekeeping+=float(Housekeep.totamt)
+    context['Housekeeping'] = Housekeeping
+    Insurance = 0.0
+    for Insuran in ball:
+            if (Insuran.category1=='Insurance Expense'):
+                data_1.append(Insuran.totamt)
+                Insurance+=float(Insuran.totamt)
+    context['Insurance'] = Insurance
+    ExpenseGeneral = 0.0
+    for InsuranceExpense in ball:
+            if (InsuranceExpense.category1=='Insurance Expense-General Liability Insurance'):
+                data_1.append(InsuranceExpense.totamt)
+                ExpenseGeneral+=float(InsuranceExpense.totamt)
+    context['ExpenseGeneral'] = ExpenseGeneral
+    ExpenseHealth = 0.0
+    for Health in ball:
+            if (Health.category1=='Insurance Expense-Health Insurance'):
+                data_1.append(Health.totamt)
+                ExpenseHealth+=float(Health.totamt)
+    context['ExpenseHealth'] = ExpenseHealth
+    ExpenseLife = 0.0
+    for Life in ball:
+            if (Life.category1=='Insurance Expense-Life and Disability Insurance'):
+                data_1.append(Life.totamt)
+                ExpenseLife+=float(Life.totamt)
+    context['ExpenseLife'] = ExpenseLife
+    ExpenseProfessional = 0.0
+    for Professional in ball:
+            if (Professional.category1=='Insurance Expense-Professional Liability'):
+                data_1.append(Professional.totamt)
+                ExpenseProfessional+=float(Professional.totamt)
+    context['ExpenseProfessional'] = ExpenseProfessional
+    InterestExpense = 0.0
+    for InterestExpens in ball:
+            if (InterestExpens.category1=='Interest Expense'):
+                data_1.append(InterestExpens.totamt)
+                InterestExpense+=float(InterestExpens.totamt)
+    context['InterestExpense'] = InterestExpense
+    Mealsand = 0.0
+    for Meals in ball:
+            if (Meals.category1=='Meals and entertainment'):
+                data_1.append(Meals.totamt)
+                Mealsand+=float(Meals.totamt)
+    context['Mealsand'] = Mealsand
+    OfficeSupplies = 0.0
+    for Office in ball:
+            if (Office.category1=='Office Supplies'):
+                data_1.append(Office.totamt)
+                OfficeSupplies+=float(Office.totamt)
+    context['OfficeSupplies'] = OfficeSupplies
+    Postageand = 0.0
+    for Postage in ball:
+            if (Postage.category1=='Postage and Delivery'):
+                data_1.append(Postage.totamt)
+                Postageand+=float(Postage.totamt)
+    context['Postageand'] = Postageand
+    Printingand = 0.0
+    for Printing in ball:
+            if (Printing.category1=='Printing and Reproduction'):
+                data_1.append(Printing.totamt)
+                Printingand+=float(Printing.totamt)
+    context['Printingand'] = Printingand
+    ProfessionalFees = 0.0
+    for alFe in ball:
+            if (alFe.category1=='Professional Fees'):
+                data_1.append(alFe.totamt)
+                ProfessionalFees+=float(alFe.totamt)
+    context['ProfessionalFees'] = ProfessionalFees
+    Purchases = 0.0
+    for pure in ball:
+            if (pure.category1=='Purchases'):
+                data_1.append(pure.totamt)
+                Purchases+=float(pure.totamt)
+    context['Purchases'] = Purchases
+    RentExpense = 0.0
+    for Rent in ball:
+            if (Rent.category1=='Rent Expense'):
+                data_1.append(Rent.totamt)
+                RentExpense+=float(Rent.totamt)
+    context['RentExpense'] = RentExpense
+    Repairand = 0.0
+    for Repair in ball:
+            if (Repair.category1=='Repair and maintenance'):
+                data_1.append(Repair.totamt)
+                Repairand+=float(Repair.totamt)
+    context['Repairand'] = Repairand
+    SmallToolsand = 0.0
+    for SmallTools in ball:
+            if (SmallTools.category1=='Small Tools and Equipment'):
+                data_1.append(SmallTools.totamt)
+                SmallToolsand+=float(SmallTools.totamt)
+    context['SmallToolsand'] = SmallToolsand
+    SwachhB = 0.0
+    for Swac in ball:
+            if (Swac.category1=='Swachh Bharat Cess Expense'):
+                data_1.append(Swac.totamt)
+                SwachhB+=float(Swac.totamt)
+    context['SwachhB'] = SwachhB
+    TaxesP = 0.0
+    for Taxe in ball:
+            if (Taxe.category1=='Taxes - Property'):
+                data_1.append(Taxe.totamt)
+                TaxesP+=float(Taxe.totamt)
+    context['TaxesP'] = TaxesP
+    Telephon = 0.0
+    for Telep in ball:
+            if (Telep.category1=='Telephone Expense'):
+                data_1.append(Telep.totamt)
+                Telephon+=float(Telep.totamt)
+    context['Telephon'] = Telephon
+    Trave = 0.0
+    for Trav in ball:
+            if (Trav.category1=='Travel Expense'):
+                data_1.append(Trav.totamt)
+                Trave+=float(Trav.totamt)
+    context['Trave'] = Trave
+    Uncateg = 0.0
+    for Uncat in ball:
+            if (Uncat.category1=='Uncategorised Expense'):
+                data_1.append(Uncat.totamt)
+                Uncateg+=float(Uncat.totamt)
+    context['Uncateg'] = Uncateg
+    Utilit = 0.0
+    for Uti in ball:
+            if (Uti.category1=='Utilities'):
+                data_1.append(Uti.totamt)
+                Utilit+=float(Uti.totamt)
+    context['Utilit'] = Utilit
+    Cashand = 0.0
+    for Cas in ball:
+            if (Cas.category1=='Cash and cash equivalents'):
+                data_1.append(Cas.totamt)
+                Cashand+=float(Cas.totamt)
+    context['Cashand'] = Cashand
+    Acco = 0.0
+    for Acc in ball:
+            if (Acc.category1=='Accounts Receivable (Debtors)'):
+                data_1.append(Acc.totamt)
+                Acco+=float(Acc.totamt)
+    context['Acco'] = Acco
+    Defer = 0.0
+    for Defe in ball:
+            if (Defe.category1=='Deferred CGST'):
+                data_1.append(Defe.totamt)
+                Defer+=float(Defe.totamt)
+    context['Defer'] = Defer
+    edGST = 0.0
+    for dGS in ball:
+            if (dGS.category1=='Deferred GST Input Credit'):
+                data_1.append(dGS.totamt)
+                edGST+=float(dGS.totamt)
+    context['edGST'] = edGST
+    Defem = 0.0
+    for De in ball:
+            if (De.category1=='Deferred IGST'):
+                data_1.append(De.totamt)
+                Defem+=float(De.totamt)
+    context['Defem'] = Defem
+    Krish = 0.0
+    for Kri in ball:
+            if (Kri.category1=='Deferred Krishi Kalyan Cess Input Credit'):
+                data_1.append(Kri.totamt)
+                Krish+=float(Kri.totamt)
+    context['Krish'] = Krish
+    Serv = 0.0
+    for Ser in ball:
+            if (Ser.category1=='Deferred Service Tax Input Credit'):
+                data_1.append(Ser.totamt)
+                Serv+=float(Ser.totamt)
+    context['Serv'] = Serv
+    erre = 0.0
+    for rre in ball:
+            if (rre.category1=='Deferred SGST'):
+                data_1.append(rre.totamt)
+                erre+=float(rre.totamt)
+    context['erre'] = erre
+    VATI = 0.0
+    for VA in ball:
+            if (VA.category1=='Deferred VAT Input Credit'):
+                data_1.append(VA.totamt)
+                VATI+=float(VA.totamt)
+    context['VATI'] = VATI
+    Refu = 0.0
+    for Ref in ball:
+            if (Ref.category1=='GST Refund'):
+                data_1.append(Ref.totamt)
+                Refu+=float(Ref.totamt)
+    context['Refu'] = Refu
+    Inve = 0.0
+    for Inv in ball:
+            if (Inv.category1=='Inventory Asset'):
+                data_1.append(Inv.totamt)
+                Inve+=float(Inv.totamt)
+    context['Inve'] = Inve
+    iKal = 0.0
+    for iKa in ball:
+            if (iKa.category1=='Krishi Kalyan Cess Refund'):
+                data_1.append(iKa.totamt)
+                iKal+=float(iKa.totamt)
+    context['iKal'] = iKal
+    Prep = 0.0
+    for Pr in ball:
+            if (Pr.category1=='Prepaid Insurance'):
+                data_1.append(Pr.totamt)
+                Prep+=float(Pr.totamt)
+    context['Prep'] = Prep
+    rvic = 0.0
+    for rvi in ball:
+            if (rvi.category1=='Service Tax Refund'):
+                data_1.append(rvi.totamt)
+                rvic+=float(rvi.totamt)
+    context['rvic'] = rvic
+    TDSR = 0.0
+    for TD in ball:
+            if (TD.category1=='TDS Receivable'):
+                data_1.append(TD.totamt)
+                TDSR+=float(TD.totamt)
+    context['TDSR'] = TDSR
+    Unca = 0.0
+    for Unc in ball:
+            if (Unc.category1=='Uncategorised Asset'):
+                data_1.append(Unc.totamt)
+                Unca+=float(Unc.totamt)
+    context['Unca'] = Unca
+    Undep = 0.0
+    for Unde in ball:
+            if (Unde.category1=='Undeposited Funds'):
+                data_1.append(Unde.totamt)
+                Undep+=float(Unde.totamt)
+    context['Undep'] = Undep
+    
+    return render(request, 'app1/cash_flow_analyzer.html', context)
 
 
 def cash_flow_sort(request):
