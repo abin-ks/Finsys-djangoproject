@@ -25557,10 +25557,20 @@ def deletestyle(request, customizeid):
 def cash_flow_analyzer(request):
     cmp1 = company.objects.get(id=request.session['uid'])
     context = {'cmp1': cmp1}
+    data_1 = []
+    toda = date.today()
+    tod = toda.strftime("%Y-%m-%d")
     balance = expences.objects.order_by('paymmethod')
     ball = expences.objects.order_by('category1')
     tody = datetime.now()
-    tod = tody.strftime("%B")
+    tod1 = tody.strftime("%B")
+    fromdate = toda.strftime("%Y-%m-01")
+    todate = toda.strftime("%Y-%m-31")
+    pmonth = int(toda.strftime("%m")) - 1
+    
+    fromdatem = f'{toda.strftime("%Y")}-{pmonth}-1'
+    print("str",fromdatem)
+    todatem = f'{toda.strftime("%Y")}-{pmonth}-31'
     data_1 = []
     exp = 0.0
     bat = 0.0
@@ -25571,7 +25581,32 @@ def cash_flow_analyzer(request):
     continueing = 0.0
     Depreciation = 0.0
     Dues = 0.0
-    context['tod'] = tod
+    context['tod1'] = tod1
+    # context['tod2'] = tod2
+    date2 = []
+    date4 = []
+    date1 = 0.0
+    date3 = 0.0
+    
+    bill = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bill:
+        if b.paymmethod=='Cash' and b.category1 == 'Advertising/Promotional':
+            date2.append(b.totamt)
+            date1+=float(b.totamt)
+    context['date1'] = date1
+    bill2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for be in bill2:
+        if be.paymmethod=='Cash' and be.category1 == 'Advertising/Promotional':
+            date4.append(be.totamt)
+            date3+=float(be.totamt)
+    context['date3'] = date3
+    print("hai")
+    print(fromdatem)
+    print("hello")
+    print(todatem)
+    print("hai")
     for bal in balance:
         
         if (bal.paymmethod=='Cash'):
@@ -25853,7 +25888,234 @@ def cash_flow_analyzer(request):
                 data_1.append(Unde.totamt)
                 Undep+=float(Unde.totamt)
     context['Undep'] = Undep
-    
+    Accum = 0.0
+    for Accu in ball:
+            if (Accu.category1=='Accumulated Depreciation'):
+                data_1.append(Accu.totamt)
+                Accum+=float(Accu.totamt)
+    context['Accum'] = Accum
+    Buil = 0.0
+    for Bui in ball:
+            if (Bui.category1=='Buildings and Improvements'):
+                data_1.append(Bui.totamt)
+                Buil+=float(Bui.totamt)
+    context['Buil'] = Buil
+    Furn = 0.0
+    for Fur in ball:
+            if (Fur.category1=='Furniture and Equipment'):
+                data_1.append(Fur.totamt)
+                Furn+=float(Fur.totamt)
+    context['Furn'] = Furn
+    Lan = 0.0
+    for La in ball:
+            if (La.category1=='Land'):
+                data_1.append(La.totamt)
+                Lan+=float(La.totamt)
+    context['Lan'] = Lan
+    Leas = 0.0
+    for Lea in ball:
+            if (Lea.category1=='Leasehold Improvements'):
+                data_1.append(Lea.totamt)
+                Leas+=float(Lea.totamt)
+    context['Leas'] = Leas
+    Vehi = 0.0
+    for Veh in ball:
+            if (Veh.category1=='Vehicles'):
+                data_1.append(Veh.totamt)
+                Vehi+=float(Veh.totamt)
+    context['Vehi'] = Vehi
+    Paya = 0.0
+    for Pa in ball:
+            if (Pa.category1=='CGST Payable'):
+                data_1.append(Pa.totamt)
+                Paya+=float(Pa.totamt)
+    context['Paya'] = Paya
+    CSTPa = 0.0
+    for CS in ball:
+            if (CS.category1=='CST Payable'):
+                data_1.append(CS.totamt)
+                CSTPa+=float(CS.totamt)
+    context['CSTPa'] = CSTPa
+    TSu = 0.0
+    for Su in ball:
+            if (Su.category1=='CST Suspense'):
+                data_1.append(Su.totamt)
+                TSu+=float(Su.totamt)
+    context['TSu'] = TSu
+    GSTPa = 0.0
+    for GS in ball:
+            if (GS.category1=='GST Payable'):
+                data_1.append(GS.totamt)
+                GSTPa+=float(GS.totamt)
+    context['GSTPa'] = GSTPa
+    GSTSu = 0.0
+    for STS in ball:
+            if (STS.category1=='GST Suspense'):
+                data_1.append(STS.totamt)
+                GSTSu+=float(STS.totamt)
+    context['GSTSu'] = GSTSu
+    STP = 0.0
+    for TP in ball:
+            if (TP.category1=='IGST Payable'):
+                data_1.append(TP.totamt)
+                STP+=float(TP.totamt)
+    context['STP'] = STP
+    tCG = 0.0
+    for tC in ball:
+            if (tC.category1=='Input CGST'):
+                data_1.append(tC.totamt)
+                tCG+=float(tC.totamt)
+    context['tCG'] = tCG
+    RCM = 0.0
+    for RC in ball:
+            if (RC.category1=='Input CGST Tax RCM'):
+                data_1.append(RC.totamt)
+                RCM+=float(RC.totamt)
+    context['RCM'] = RCM
+    put = 0.0
+    for pu in ball:
+            if (pu.category1=='Input IGST'):
+                data_1.append(pu.totamt)
+                put+=float(pu.totamt)
+    context['put'] = put
+    TTa = 0.0
+    for TT in ball:
+            if (TT.category1=='Input IGST Tax RCM'):
+                data_1.append(TT.totamt)
+                TTa+=float(TT.totamt)
+    context['TTa'] = TTa
+    Kris = 0.0
+    for Kr in ball:
+            if (Kr.category1=='Input Krishi Kalyan Cess'):
+                data_1.append(Kr.totamt)
+                Kris+=float(Kr.totamt)
+    context['Kris'] = Kris
+    ess = 0.0
+    for es in ball:
+            if (es.category1=='Input Krishi Kalyan Cess RCM'):
+                data_1.append(es.totamt)
+                ess+=float(es.totamt)
+    context['ess'] = ess
+    npu = 0.0
+    for np in ball:
+            if (es.category1=='Input Service Tax'):
+                data_1.append(np.totamt)
+                npu+=float(np.totamt)
+    context['npu'] = npu
+    tser = 0.0
+    for tSe in ball:
+            if (tSe.category1=='Input Service Tax RCM'):
+                data_1.append(tSe.totamt)
+                tser+=float(tSe.totamt)
+    context['tser'] = tser
+    uts = 0.0
+    for ut in ball:
+            if (ut.category1=='Input SGST'):
+                data_1.append(ut.totamt)
+                uts+=float(ut.totamt)
+    context['uts'] = uts
+    ps = 0.0
+    for sp in ball:
+            if (sp.category1=='Input SGST Tax RCM'):
+                data_1.append(sp.totamt)
+                ps+=float(sp.totamt)
+    context['ps'] = ps
+    AT = 0.0
+    for A in ball:
+            if (A.category1=='Input VAT 14%'):
+                data_1.append(A.totamt)
+                AT+=float(A.totamt)
+    context['AT'] = AT
+    ATv= 0.0
+    for tv in ball:
+            if (tv.category1=='Input VAT 4%'):
+                data_1.append(tv.totamt)
+                ATv+=float(tv.totamt)
+    context['ATv'] = ATv
+    ATvv= 0.0
+    for tvv in ball:
+            if (tvv.category1=='Input VAT 5%'):
+                data_1.append(tvv.totamt)
+                ATvv+=float(tvv.totamt)
+    context['ATvv'] = ATvv
+    aya= 0.0
+    for ay in ball:
+            if (ay.category1=='Krishi Kalyan Cess Payable'):
+                data_1.append(ay.totamt)
+                aya+=float(ay.totamt)
+    context['aya'] = aya
+    yan= 0.0
+    for ya in ball:
+            if (ya.category1=='Krishi Kalyan Cess Suspense'):
+                data_1.append(ya.totamt)
+                yan+=float(ya.totamt)
+    context['yan'] = yan
+    ccsm= 0.0
+    for ccs in ball:
+            if (ccs.category1=='Output CGST'):
+                data_1.append(ccs.totamt)
+                ccsm+=float(ccs.totamt)
+    context['ccsm'] = ccsm
+    utp= 0.0
+    for ut in ball:
+            if (ut.category1=='Output CGST Tax RCM'):
+                data_1.append(ut.totamt)
+                utp+=float(ut.totamt)
+    context['utp'] = utp
+    putsss= 0.0
+    for puts in ball:
+            if (puts.category1=='Output CST 2%'):
+                data_1.append(puts.totamt)
+                putsss+=float(puts.totamt)
+    context['putsss'] = putsss
+    uos= 0.0
+    for ou in ball:
+            if (ou.category1=='Output IGST'):
+                data_1.append(ou.totamt)
+                uos+=float(ou.totamt)
+    context['uos'] = uos
+    tIG= 0.0
+    for ax in ball:
+            if (ax.category1=='Output IGST Tax RCM'):
+                data_1.append(ax.totamt)
+                tIG+=float(ax.totamt)
+    context['tIG'] = tIG
+    shi= 0.0
+    for hi in ball:
+            if (hi.category1=='Output Krishi Kalyan Cess'):
+                data_1.append(hi.totamt)
+                shi+=float(hi.totamt)
+    context['shi'] = shi
+    crc= 0.0
+    for cr in ball:
+            if (cr.category1=='Output Krishi Kalyan Cess RCM'):
+                data_1.append(cr.totamt)
+                crc+=float(cr.totamt)
+    context['crc'] = crc
+    erre= 0.0
+    for err in ball:
+            if (err.category1=='Output Service Tax'):
+                data_1.append(err.totamt)
+                erre+=float(err.totamt)
+    context['erre'] = erre
+    vice= 0.0
+    for vi in ball:
+            if (vi.category1=='Output Service Tax RCM'):
+                data_1.append(vi.totamt)
+                vice+=float(vi.totamt)
+    context['vice'] = vice
+    stqq= 0.0
+    for stq in ball:
+            if (stq.category1=='Output SGST'):
+                data_1.append(stq.totamt)
+                stqq+=float(stq.totamt)
+    context['stqq'] = stqq
+    rcb= 0.0
+    for rc in ball:
+            if (rc.category1=='Output SGST Tax RCM'):
+                data_1.append(rc.totamt)
+                rcb+=float(rc.totamt)
+    context['rcb'] = rcb
     return render(request, 'app1/cash_flow_analyzer.html', context)
 
 
@@ -25864,7 +26126,7 @@ def cash_flow_sort(request):
         data_1 = []
         toda = date.today()
         tod = toda.strftime("%Y-%m-%d")
-        filmeth = request.POST['reportperiod']
+        filmeth = request.POST['reportperiod1']
         if filmeth == 'Today':
             fromdate = tod
             todate = tod
