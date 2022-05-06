@@ -25607,8 +25607,8 @@ def cash_flow_analyzer(request):
     print("hello")
     print(todatem)
     print("hai")
-    for bal in balance:
-        
+    
+    for bal in balance:    
         if (bal.paymmethod=='Cash'):
             data_1.append(bal.totamt)
             exp+=float(bal.totamt)
