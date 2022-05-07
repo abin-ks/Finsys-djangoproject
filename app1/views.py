@@ -25566,11 +25566,34 @@ def cash_flow_analyzer(request):
     tod1 = tody.strftime("%B")
     fromdate = toda.strftime("%Y-%m-01")
     todate = toda.strftime("%Y-%m-31")
-    pmonth = int(toda.strftime("%m")) - 1
     
-    fromdatem = f'{toda.strftime("%Y")}-{pmonth}-1'
+    pmonth = int(toda.strftime("%m")) - 1
+    fromdatem = f'{toda.strftime("%Y")}-{pmonth}-01'
     print("str",fromdatem)
     todatem = f'{toda.strftime("%Y")}-{pmonth}-31'
+    print(pmonth)
+    
+    pmonth1 = int(toda.strftime("%m")) - 2
+    
+    fromdatem1 = f'{toda.strftime("%Y")}-{pmonth1}-01'
+    print("str",fromdatem1)
+    todatem1 = f'{toda.strftime("%Y")}-{pmonth1}-31'
+    
+    pmonth2 = int(toda.strftime("%m")) - 3
+    fromdatem2 = f'{toda.strftime("%Y")}-{pmonth2}-01'
+    print("str",fromdatem2)
+    todatem2 = f'{toda.strftime("%Y")}-{pmonth2}-31'
+    
+    pmonth3 = int(toda.strftime("%m")) - 4
+    fromdatem3 = f'{toda.strftime("%Y")}-{pmonth3}-01'
+    print("str",fromdatem3)
+    todatem3 = f'{toda.strftime("%Y")}-{pmonth3}-31'
+    
+    # pyear = int(toda.strftime("%Y")) - 1
+    # fromdate = f'{pyear}-03-01'
+    # todate = f'{toda.strftime("%Y")}-03-31' 
+    
+    
     data_1 = []
     exp = 0.0
     bat = 0.0
@@ -25583,29 +25606,58 @@ def cash_flow_analyzer(request):
     Dues = 0.0
     context['tod1'] = tod1
     # context['tod2'] = tod2
-    date2 = []
-    date4 = []
+    context['pmonth'] = pmonth
+    context['pmonth1'] = pmonth1
+    context['pmonth2'] = pmonth2
+    context['pmonth3'] = pmonth3
+    date_2 = []
+    date_4=[]
     date1 = 0.0
     date3 = 0.0
-    
+    date5=0.0
+    date7 = 0.0
     bill = expences.objects.raw(
         'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
     for b in bill:
         if b.paymmethod=='Cash' and b.category1 == 'Advertising/Promotional':
-            date2.append(b.totamt)
+            date_2.append(b.totamt)
             date1+=float(b.totamt)
     context['date1'] = date1
     bill2 = expences.objects.raw(
         'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
-    for be in bill2:
-        if be.paymmethod=='Cash' and be.category1 == 'Advertising/Promotional':
-            date4.append(be.totamt)
-            date3+=float(be.totamt)
+    for b in bill2:
+        if b.paymmethod=='Cash' and b.category1 == 'Advertising/Promotional':
+            date_4.append(b.totamt)
+            date3+=float(b.totamt)
     context['date3'] = date3
+    
+    bill3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bill3:
+        if be.paymmethod=='Cash' and be.category1 == 'Advertising/Promotional':
+            date_2.append(be.totamt)
+            date5+=float(be.totamt)
+    context['date5'] = date5
+    date6=0.0
+    bill4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bill4:
+        if be.paymmethod=='Cash' and be.category1 == 'Advertising/Promotional':
+            date_2.append(be.totamt)
+            date6+=float(be.totamt)
+    context['date6'] = date6
+    bill5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bill5:
+        if be.paymmethod=='Cash' and be.category1 == 'Advertising/Promotional':
+            date_4.append(be.totamt)
+            date7+=float(be.totamt)
+    context['date7'] = date7
     print("hai")
     print(fromdatem)
     print("hello")
     print(todatem)
+    print(date3)
     print("hai")
     
     for bal in balance:    
@@ -26116,6 +26168,90 @@ def cash_flow_analyzer(request):
                 data_1.append(rc.totamt)
                 rcb+=float(rc.totamt)
     context['rcb'] = rcb
+    vat14= 0.0
+    for te in ball:
+            if (te.category1=='Output VAT 14%'):
+                data_1.append(te.totamt)
+                vat14+=float(te.totamt)
+    context['vat14'] = vat14
+    vat4= 0.0
+    for tpV in ball:
+            if (tpV.category1=='Output VAT 4%'):
+                data_1.append(tpV.totamt)
+                vat4+=float(tpV.totamt)
+    context['vat4'] = vat4
+    vat5= 0.0
+    for atp in ball:
+            if (atp.category1=='Output VAT 5%'):
+                data_1.append(atp.totamt)
+                vat5+=float(atp.totamt)
+    context['vat5'] = vat5
+    xpapa= 0.0
+    for xpa in ball:
+            if (xpa.category1=='Service Tax Payable'):
+                data_1.append(xpa.totamt)
+                xpapa+=float(xpa.totamt)
+    context['xpapa'] = xpapa
+    sosvice= 0.0
+    for sos in ball:
+            if (sos.category1=='Service Tax Suspense'):
+                data_1.append(sos.totamt)
+                sosvice+=float(sos.totamt)
+    context['sosvice'] = sosvice
+    blu= 0.0
+    for bl in ball:
+            if (bl.category1=='SGST Payable'):
+                data_1.append(bl.totamt)
+                blu+=float(bl.totamt)
+    context['blu'] = blu
+    achws= 0.0
+    for achw in ball:
+            if (achw.category1=='Swachh Bharat Cess Payable'):
+                data_1.append(achw.totamt)
+                achws+=float(achw.totamt)
+    context['achws'] = achws
+    csebsu= 0.0
+    for cseb in ball:
+            if (cseb.category1=='Swachh Bharat Cess Suspense'):
+                data_1.append(cseb.totamt)
+                csebsu+=float(cseb.totamt)
+    context['csebsu'] = csebsu
+    dsptds= 0.0
+    for dsp in ball:
+            if (dsp.category1=='TDS Payable'):
+                data_1.append(dsp.totamt)
+                dsptds+=float(dsp.totamt)
+    context['dsptds'] = dsptds
+    spnse= 0.0
+    for spn in ball:
+            if (spn.category1=='VAT Suspense'):
+                data_1.append(spn.totamt)
+                spnse+=float(spn.totamt)
+    context['spnse'] = spnse
+    opnbl= 0.0
+    for opn in ball:
+            if (opn.category1=='Opening Balance Equity'):
+                data_1.append(opn.totamt)
+                opnbl+=float(opn.totamt)
+    context['opnbl'] = opnbl
+    rtier= 0.0
+    for rti in ball:
+            if (rti.category1=='Retained Earnings'):
+                data_1.append(rti.totamt)
+                rtier+=float(rti.totamt)
+    context['rtier'] = rtier
+    exbi= 0.0
+    for exb in ball:
+            if (exb.category1=='Billable Expense Income'):
+                data_1.append(exb.totamt)
+                exbi+=float(exb.totamt)
+    context['exbi'] = exbi
+    csltin= 0.0
+    for csl in ball:
+            if (csl.category1=='Consulting Income'):
+                data_1.append(csl.totamt)
+                csltin+=float(csl.totamt)
+    context['csltin'] = csltin
     return render(request, 'app1/cash_flow_analyzer.html', context)
 
 

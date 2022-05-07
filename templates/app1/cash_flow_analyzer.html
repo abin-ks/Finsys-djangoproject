@@ -65,14 +65,14 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center"></th>
-                                            <th class="text-center">[MONTH]</th>
-                                            <th class="text-center">[MONTH]</th>
-                                            <th class="text-center">[MONTH]</th>
-                                            <th class="text-center">[MONTH]</th>
-                                            <th class="text-center">[MONTH]</th>
+                                            <th class="text-center">{{pmonth4}}</th>
+                                            <th class="text-center">{{pmonth3}}</th>
+                                            <th class="text-center">{{pmonth2}}</th>
+                                            <th class="text-center">{{pmonth1}}</th>
+                                            <th class="text-center">{{pmonth}}</th>
                                             <th class="text-center">{{tod1}}</th>
                                             <th class="text-center">TOTAL</th>
-                                        </tr>#1
+                                        </tr>
                                     </thead>
                                     <tbody>
 
@@ -294,16 +294,16 @@
                                                 <input type="text" class="form-control" name="hsn1" id="hsn1" value="" style="background-color: #2f516f;">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="description1" id="description1" style="background-color: #2f516f;">
+                                                <input type="text" class="form-control" name="description1" id="description1" style="background-color: #2f516f;" value="{{date7}}">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control qty" name="qty1" id="qty1" style="background-color: #2f516f;" step="any" value="">
+                                                <input type="text" class="form-control qty" name="qty1" id="qty1" style="background-color: #2f516f;" step="any" value="{{date6}}">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control price" name="price1" id="price1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control price" name="price1" id="price1" style="background-color: #2f516f;" value="{{date5}}">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control total" name="total1" id="total1" style="background-color: #2f516f;" value="{{date3}}">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{date3}}">
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{date1}}">
@@ -2519,7 +2519,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{vat14}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2545,7 +2545,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{vat4}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2571,7 +2571,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{vat5}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2597,7 +2597,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{xpapa}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2623,7 +2623,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{sosvice}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2649,7 +2649,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{blu}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2675,7 +2675,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{achws}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2701,7 +2701,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{csebsu}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2727,7 +2727,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{dsptds}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2753,7 +2753,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{spnse}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2779,7 +2779,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{opnbl}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2805,7 +2805,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{rtier}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2831,7 +2831,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{exbi}}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -2857,7 +2857,7 @@
                                                 <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                                                <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{csltin}}">
                                             </td>
                                         </tr>
                                         <tr>
