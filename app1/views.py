@@ -25568,10 +25568,15 @@ def cash_flow_analyzer(request):
     todate = toda.strftime("%Y-%m-31")
     
     pmonth = int(toda.strftime("%m")) - 1
+    tod2 = pmonth
+    # toc = int(tod2.strftime("%B"))
     fromdatem = f'{toda.strftime("%Y")}-{pmonth}-01'
     print("str",fromdatem)
     todatem = f'{toda.strftime("%Y")}-{pmonth}-31'
     print(pmonth)
+    print(tod2)
+    # print(toc)
+    print('yellow')
     
     pmonth1 = int(toda.strftime("%m")) - 2
     
@@ -25614,10 +25619,12 @@ def cash_flow_analyzer(request):
     date_4=[]
     date1 = 0.0
     date3 = 0.0
-    date5=0.0
+    date5 = 0.0
     date7 = 0.0
+    
     bill = expences.objects.raw(
         'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    
     for b in bill:
         if b.paymmethod=='Cash' and b.category1 == 'Advertising/Promotional':
             date_2.append(b.totamt)
@@ -25625,10 +25632,10 @@ def cash_flow_analyzer(request):
     context['date1'] = date1
     bill2 = expences.objects.raw(
         'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
-    for b in bill2:
-        if b.paymmethod=='Cash' and b.category1 == 'Advertising/Promotional':
-            date_4.append(b.totamt)
-            date3+=float(b.totamt)
+    for bi in bill2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'Advertising/Promotional':
+            date_2.append(bi.totamt)
+            date3+=float(bi.totamt)
     context['date3'] = date3
     
     bill3 = expences.objects.raw(
@@ -26252,6 +26259,72 @@ def cash_flow_analyzer(request):
                 data_1.append(csl.totamt)
                 csltin+=float(csl.totamt)
     context['csltin'] = csltin
+    psldct= 0.0
+    for psl in ball:
+            if (psl.category1=='Product Sales'):
+                data_1.append(psl.totamt)
+                psldct+=float(psl.totamt)
+    context['psldct'] = psldct
+    slels= 0.0
+    for sle in ball:
+            if (sle.category1=='Sales'):
+                data_1.append(sle.totamt)
+                slels+=float(sle.totamt)
+    context['slels'] = slels
+    shdwre= 0.0
+    for shd in ball:
+            if (shd.category1=='Sales - Hardware'):
+                data_1.append(shd.totamt)
+                shdwre+=float(shd.totamt)
+    context['shdwre'] = shdwre
+    shsft= 0.0
+    for std in ball:
+            if (std.category1=='Sales - Software'):
+                data_1.append(std.totamt)
+                shsft+=float(std.totamt)
+    context['shsft'] = shsft
+    sumance= 0.0
+    for suma in ball:
+            if (suma.category1=='Sales - Support and Maintenance'):
+                data_1.append(suma.totamt)
+                sumance+=float(suma.totamt)
+    context['sumance'] = sumance
+    sldic= 0.0
+    for sldi in ball:
+            if (sldi.category1=='Sales Discounts'):
+                data_1.append(sldi.totamt)
+                sldic+=float(sldi.totamt)
+    context['sldic'] = sldic
+    sopi= 0.0
+    for sop in ball:
+            if (sop.category1=='Sales of Product Income'):
+                data_1.append(sop.totamt)
+                sopi+=float(sop.totamt)
+    context['sopi'] = sopi
+    uninc= 0.0
+    for unin in ball:
+            if (unin.category1=='Uncategorised Income'):
+                data_1.append(unin.totamt)
+                uninc+=float(unin.totamt)
+    context['uninc'] = uninc
+    cosos= 0.0
+    for coso in ball:
+            if (coso.category1=='Cost of sales'):
+                data_1.append(coso.totamt)
+                cosos+=float(coso.totamt)
+    context['cosos'] = cosos
+    eqrfj= 0.0
+    for eqr in ball:
+            if (eqr.category1=='Equipment Rental for Jobs'):
+                data_1.append(eqr.totamt)
+                eqrfj+=float(eqr.totamt)
+    context['eqrfj'] = eqrfj
+    fras= 0.0
+    for fras in ball:
+            if (fras.category1=='Freight and Shipping Costs'):
+                data_1.append(fras.totamt)
+                eqrfj+=float(fras.totamt)
+    context['eqrfj'] = eqrfj
     return render(request, 'app1/cash_flow_analyzer.html', context)
 
 
