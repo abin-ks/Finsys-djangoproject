@@ -25621,6 +25621,7 @@ def cash_flow_analyzer(request):
     date3 = 0.0
     date5 = 0.0
     date7 = 0.0
+    #111eee
     
     bill = expences.objects.raw(
         'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
@@ -25666,7 +25667,7 @@ def cash_flow_analyzer(request):
     print(todatem)
     print(date3)
     print("hai")
-    
+    # 123456789
     for bal in balance:    
         if (bal.paymmethod=='Cash'):
             data_1.append(bal.totamt)
@@ -26319,12 +26320,126 @@ def cash_flow_analyzer(request):
                 data_1.append(eqr.totamt)
                 eqrfj+=float(eqr.totamt)
     context['eqrfj'] = eqrfj
-    fras= 0.0
+    frasco= 0.0
     for fras in ball:
             if (fras.category1=='Freight and Shipping Costs'):
                 data_1.append(fras.totamt)
-                eqrfj+=float(fras.totamt)
-    context['eqrfj'] = eqrfj
+                frasco+=float(fras.totamt)
+    context['frasco'] = frasco
+    mraf= 0.0
+    for mra in ball:
+            if (mra.category1=='Merchant Account Fees'):
+                data_1.append(mra.totamt)
+                mraf+=float(mra.totamt)
+    context['mraf'] = mraf
+    phfres= 0.0
+    for phfr in ball:
+            if (phfr.category1=='Purchases - Hardware for Resale'):
+                data_1.append(phfr.totamt)
+                phfres+=float(phfr.totamt)
+    context['phfres'] = phfres
+    psfrsl= 0.0
+    for psfr in ball:
+            if (psfr.category1=='Purchases - Software for Resale'):
+                data_1.append(psfr.totamt)
+                psfrsl+=float(psfr.totamt)
+    context['psfrsl'] = psfrsl
+    sbtsco= 0.0
+    for sbts in ball:
+            if (sbts.category1=='Subcontracted Services'):
+                data_1.append(sbts.totamt)
+                sbtsco+=float(sbts.totamt)
+    context['sbtsco'] = sbtsco
+    tacspp= 0.0
+    for tacs in ball:
+            if (tacs.category1=='Tools and Craft Supplies'):
+                data_1.append(tacs.totamt)
+                tacspp+=float(tacs.totamt)
+    context['tacspp'] = tacspp
+    fciin= 0.0
+    for fci in ball:
+            if (fci.category1=='Finance Charge Income'):
+                data_1.append(fci.totamt)
+                fciin+=float(fci.totamt)
+    context['fciin'] = fciin
+    iprpr= 0.0
+    for ipr in ball:
+            if (ipr.category1=='Insurance Proceeds Received'):
+                data_1.append(ipr.totamt)
+                iprpr+=float(ipr.totamt)
+    context['iprpr'] = iprpr
+    iicom= 0.0
+    for iic in ball:
+            if (iic.category1=='Interest Income'):
+                data_1.append(iic.totamt)
+                iicom+=float(iic.totamt)
+    context['iicom'] = iicom
+    pfsoa= 0.0
+    for pfso in ball:
+            if (pfso.category1=='Proceeds from Sale of Assets'):
+                data_1.append(pfso.totamt)
+                pfsoa+=float(pfso.totamt)
+    context['pfsoa'] = pfsoa
+    sadic= 0.0
+    for sadi in ball:
+            if (sadi.category1=='Shipping and Delivery Income'):
+                data_1.append(sadi.totamt)
+                sadic+=float(sadi.totamt)
+    context['sadic'] = sadic
+    amacou= 0.0
+    for amac in ball:
+            if (amac.category1=='Ask My Accountant'):
+                data_1.append(amac.totamt)
+                amacou+=float(amac.totamt)
+    context['amacou'] = amacou
+    cwoff= 0.0
+    for cwo in ball:
+            if (cwo.category1=='CGST write-off'):
+                data_1.append(cwo.totamt)
+                cwoff+=float(cwo.totamt)
+    context['cwoff'] = cwoff
+    gwoff= 0.0
+    for gwo in ball:
+            if (gwo.category1=='GST write-off'):
+                data_1.append(gwo.totamt)
+                gwoff+=float(gwo.totamt)
+    context['gwoff'] = gwoff
+    iwoff= 0.0
+    for iwo in ball:
+            if (iwo.category1=='IGST write-off'):
+                data_1.append(iwo.totamt)
+                iwoff+=float(iwo.totamt)
+    context['iwoff'] = iwoff
+    miexpn= 0.0
+    for miex in ball:
+            if (miex.category1=='Miscellaneous Expense'):
+                data_1.append(miex.totamt)
+                miexpn+=float(miex.totamt)
+    context['miexpn'] = miexpn
+    poltcon= 0.0
+    for polt in ball:
+            if (polt.category1=='Political Contributions'):
+                data_1.append(polt.totamt)
+                poltcon+=float(polt.totamt)
+    context['poltcon'] = poltcon
+    sgwoff= 0.0
+    for sgwo in ball:
+            if (sgwo.category1=='SGST write-off'):
+                data_1.append(sgwo.totamt)
+                sgwoff+=float(sgwo.totamt)
+    context['sgwoff'] = sgwoff
+    twof= 0.0
+    for two in ball:
+            if (two.category1=='Tax write-of'):
+                data_1.append(two.totamt)
+                twof+=float(two.totamt)
+    context['twof'] = twof
+    vlexp= 0.0
+    for vlex in ball:
+            if (vlex.category1=='Vehicle Expenses'):
+                data_1.append(vlex.totamt)
+                vlexp+=float(vlex.totamt)
+    context['vlexp'] = vlexp
     return render(request, 'app1/cash_flow_analyzer.html', context)
 
 
@@ -26361,7 +26476,7 @@ def cash_flow_sort(request):
         # Account Receivable(Debtors)
 
         invoi = expences.objects.raw(
-            'select * from app1_expences where (paymdate between %s and %s)', [fromdate, todate, ])
+            'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
         totalardebtors = 0.0
         tot1 = 0.0
         totalardebtors1 = 0.0
