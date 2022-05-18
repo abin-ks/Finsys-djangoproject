@@ -31345,6 +31345,429 @@ def cash_flow_analyzer(request):
             kingsy5+=float(be.totamt)
     context['kingsy5'] = kingsy5
     
+    # Ask My Accountant
+    kingsu_1=[]
+    kingsu1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'Ask My Accountant':
+            kingsu_1.append(b.totamt)
+            kingsu1+=float(b.totamt)
+    context['kingsu1'] = kingsu1
+    kingsu_2 = []
+    kingsu2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'Ask My Accountant':
+            kingsu_2.append(bi.totamt)
+            kingsu2+=float(bi.totamt)
+    context['kingsu2'] = kingsu2
+    kingsu_3 = []
+    kingsu3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'Ask My Accountant':
+            kingsu_3.append(be.totamt)
+            kingsu3+=float(be.totamt)
+    context['kingsu3'] = kingsu3
+    kingsu_4 = []
+    kingsu4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'Ask My Accountant':
+            kingsu_4.append(be.totamt)
+            kingsu4+=float(be.totamt)
+    context['kingsu4'] = kingsu4
+    kingsu_5 = []
+    kingsu5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'Ask My Accountant':
+            kingsu_5.append(be.totamt)
+            kingsu5+=float(be.totamt)
+    context['kingsu5'] = kingsu5
+    
+    # CGST write-off
+    kingsi_1=[]
+    kingsi1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'CGST write-off':
+            kingsi_1.append(b.totamt)
+            kingsi1+=float(b.totamt)
+    context['kingsi1'] = kingsi1
+    kingsi_2 = []
+    kingsi2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'CGST write-off':
+            kingsi_2.append(bi.totamt)
+            kingsi2+=float(bi.totamt)
+    context['kingsi2'] = kingsi2
+    kingsi_3 = []
+    kingsi3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'CGST write-off':
+            kingsi_3.append(be.totamt)
+            kingsi3+=float(be.totamt)
+    context['kingsi3'] = kingsi3
+    kingsi_4 = []
+    kingsi4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'CGST write-off':
+            kingsi_4.append(be.totamt)
+            kingsi4+=float(be.totamt)
+    context['kingsi4'] = kingsi4
+    kingsi_5 = []
+    kingsi5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'CGST write-off':
+            kingsi_5.append(be.totamt)
+            kingsi5+=float(be.totamt)
+    context['kingsi5'] = kingsi5
+    
+    # GST write-off
+    kingso_1=[]
+    kingso1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'GST write-off':
+            kingso_1.append(b.totamt)
+            kingso1+=float(b.totamt)
+    context['kingso1'] = kingso1
+    kingso_2 = []
+    kingso2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'GST write-off':
+            kingso_2.append(bi.totamt)
+            kingso2+=float(bi.totamt)
+    context['kingso2'] = kingso2
+    kingso_3 = []
+    kingso3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'GST write-off':
+            kingso_3.append(be.totamt)
+            kingso3+=float(be.totamt)
+    context['kingso3'] = kingso3
+    kingso_4 = []
+    kingso4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'GST write-off':
+            kingso_4.append(be.totamt)
+            kingso4+=float(be.totamt)
+    context['kingso4'] = kingso4
+    kingso_5 = []
+    kingso5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'GST write-off':
+            kingso_5.append(be.totamt)
+            kingso5+=float(be.totamt)
+    context['kingso5'] = kingso5
+    
+    # IGST write-off
+    kingsp_1=[]
+    kingsp1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'IGST write-off':
+            kingsp_1.append(b.totamt)
+            kingsp1+=float(b.totamt)
+    context['kingsp1'] = kingsp1
+    kingsp_2 = []
+    kingsp2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'IGST write-off':
+            kingsp_2.append(bi.totamt)
+            kingsp2+=float(bi.totamt)
+    context['kingsp2'] = kingsp2
+    kingsp_3 = []
+    kingsp3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'IGST write-off':
+            kingsp_3.append(be.totamt)
+            kingsp3+=float(be.totamt)
+    context['kingsp3'] = kingsp3
+    kingsp_4 = []
+    kingsp4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'IGST write-off':
+            kingsp_4.append(be.totamt)
+            kingsp4+=float(be.totamt)
+    context['kingsp4'] = kingsp4
+    kingsp_5 = []
+    kingsp5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'IGST write-off':
+            kingsp_5.append(be.totamt)
+            kingsp5+=float(be.totamt)
+    context['kingsp5'] = kingsp5
+    
+    # Miscellaneous Expense
+    kingsa_1=[]
+    kingsa1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'Miscellaneous Expense':
+            kingsa_1.append(b.totamt)
+            kingsa1+=float(b.totamt)
+    context['kingsa1'] = kingsa1
+    kingsa_2 = []
+    kingsa2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'Miscellaneous Expense':
+            kingsa_2.append(bi.totamt)
+            kingsa2+=float(bi.totamt)
+    context['kingsa2'] = kingsa2
+    kingsa_3 = []
+    kingsa3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'Miscellaneous Expense':
+            kingsa_3.append(be.totamt)
+            kingsa3+=float(be.totamt)
+    context['kingsa3'] = kingsa3
+    kingsa_4 = []
+    kingsa4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'Miscellaneous Expense':
+            kingsa_4.append(be.totamt)
+            kingsa4+=float(be.totamt)
+    context['kingsa4'] = kingsa4
+    kingsa_5 = []
+    kingsa5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'Miscellaneous Expense':
+            kingsa_5.append(be.totamt)
+            kingsa5+=float(be.totamt)
+    context['kingsa5'] = kingsa5
+    
+    # Political Contributions
+    kingss_1=[]
+    kingss1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'Political Contributions':
+            kingss_1.append(b.totamt)
+            kingss1+=float(b.totamt)
+    context['kingss1'] = kingss1
+    kingss_2 = []
+    kingss2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'Political Contributions':
+            kingss_2.append(bi.totamt)
+            kingss2+=float(bi.totamt)
+    context['kingss2'] = kingss2
+    kingss_3 = []
+    kingss3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'Political Contributions':
+            kingss_3.append(be.totamt)
+            kingss3+=float(be.totamt)
+    context['kingss3'] = kingss3
+    kingss_4 = []
+    kingss4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'Political Contributions':
+            kingss_4.append(be.totamt)
+            kingss4+=float(be.totamt)
+    context['kingss4'] = kingss4
+    kingss_5 = []
+    kingss5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'Political Contributions':
+            kingss_5.append(be.totamt)
+            kingss5+=float(be.totamt)
+    context['kingss5'] = kingss5
+    
+    # SGST write-off
+    kingsd_1=[]
+    kingsd1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'SGST write-off':
+            kingsd_1.append(b.totamt)
+            kingsd1+=float(b.totamt)
+    context['kingsd1'] = kingsd1
+    kingsd_2 = []
+    kingsd2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'SGST write-off':
+            kingsd_2.append(bi.totamt)
+            kingsd2+=float(bi.totamt)
+    context['kingsd2'] = kingsd2
+    kingsd_3 = []
+    kingsd3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'SGST write-off':
+            kingsd_3.append(be.totamt)
+            kingsd3+=float(be.totamt)
+    context['kingsd3'] = kingsd3
+    kingsd_4 = []
+    kingsd4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'SGST write-off':
+            kingsd_4.append(be.totamt)
+            kingsd4+=float(be.totamt)
+    context['kingsd4'] = kingsd4
+    kingsd_5 = []
+    kingsd5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'SGST write-off':
+            kingsd_5.append(be.totamt)
+            kingsd5+=float(be.totamt)
+    context['kingsd5'] = kingsd5
+    
+    # Tax write-of
+    kingsf_1=[]
+    kingsf1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'Tax write-of':
+            kingsf_1.append(b.totamt)
+            kingsf1+=float(b.totamt)
+    context['kingsf1'] = kingsf1
+    kingsf_2 = []
+    kingsf2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'Tax write-of':
+            kingsf_2.append(bi.totamt)
+            kingsf2+=float(bi.totamt)
+    context['kingsf2'] = kingsf2
+    kingsf_3 = []
+    kingsf3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'Tax write-of':
+            kingsf_3.append(be.totamt)
+            kingsf3+=float(be.totamt)
+    context['kingsf3'] = kingsf3
+    kingsf_4 = []
+    kingsf4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'Tax write-of':
+            kingsf_4.append(be.totamt)
+            kingsf4+=float(be.totamt)
+    context['kingsf4'] = kingsf4
+    kingsf_5 = []
+    kingsf5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'Tax write-of':
+            kingsf_5.append(be.totamt)
+            kingsf5+=float(be.totamt)
+    context['kingsf5'] = kingsf5
+    
+    # Vehicle Expenses
+    kingsg_1=[]
+    kingsg1 = 0.0
+    bilal = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdate, todate, ])
+    for b in bilal:
+        if b.paymmethod=='Cash' and b.category1 == 'Vehicle Expenses':
+            kingsg_1.append(b.totamt)
+            kingsg1+=float(b.totamt)
+    context['kingsg1'] = kingsg1
+    kingsg_2 = []
+    kingsg2 = 0.0
+    bilal2 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem, todatem, ])
+    for bi in bilal2:
+        if bi.paymmethod=='Cash' and bi.category1 == 'Vehicle Expenses':
+            kingsg_2.append(bi.totamt)
+            kingsg2+=float(bi.totamt)
+    context['kingsg2'] = kingsg2
+    kingsg_3 = []
+    kingsg3 = 0.0
+    bilal3 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
+    for be in bilal3:
+        if be.paymmethod=='Cash' and be.category1 == 'Vehicle Expenses':
+            kingsg_3.append(be.totamt)
+            kingsg3+=float(be.totamt)
+    context['kingsg3'] = kingsg3
+    kingsg_4 = []
+    kingsg4 = 0.0
+    bilal4 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem2, todatem2, ])
+    for be in bilal4:
+        if be.paymmethod=='Cash' and be.category1 == 'Vehicle Expenses':
+            kingsg_4.append(be.totamt)
+            kingsg4+=float(be.totamt)
+    context['kingsg4'] = kingsg4
+    kingsg_5 = []
+    kingsg5 = 0.0
+    bilal5 = expences.objects.raw(
+        'select * from app1_expences where paymdate between %s and %s', [fromdatem3, todatem3, ])
+    for be in bilal5:
+        if be.paymmethod=='Cash' and be.category1 == 'Vehicle Expenses':
+            kingsg_5.append(be.totamt)
+            kingsg5+=float(be.totamt)
+    context['kingsg5'] = kingsg5
+    
     
     
     
