@@ -1083,3 +1083,14 @@ class customize(models.Model):
     fonts = models.CharField(max_length=255, default='', blank=True)
     lastedited = models.CharField(default=timezone.now, max_length=255, blank=True)
     selected = models.CharField(max_length=255, default='', blank=True)
+
+
+
+class production(models.Model):
+    productname = models.CharField(max_length=255, default='', blank=True)
+    sku = models.CharField(max_length=255, default='', blank=True)
+    hsn = models.CharField(max_length=255, default='', blank=True)
+    quantity = models.CharField(max_length=255, default='', blank=True)
+    price = models.CharField(max_length=255, default='', blank=True)
+    manufacturing_date = models.CharField(max_length=255, default='', blank=True)
+    expiry_date = models.CharField(max_length=255, default='', blank=True)
